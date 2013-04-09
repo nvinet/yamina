@@ -1,0 +1,23 @@
+<% content_for :banner do %>
+    <section id="hero">
+        <%= image_tag "/images/hero.jpg" %>
+    </section>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <ul class="nav pull-right clearfix">
+                    <li><%= link_to "Terms and Conditions", :controller => "home", :action => "index" %></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+<% end %>
+<div class="row">
+    <div class="span6">
+        <p>Riad Yamina is an elegant welcoming home, which has been beautifully restored and decorated to a very high standard throughout. It is located in the heart of the Marrakech Medina with its labyrinth of alleyways and souks; just five minutes walk from the vibrancy and the magic of the Jemaa El Fna Square.</p>
+        <p><%= image_tag "/images/baseline.png" %></p>
+    </div>
+    <div class="span6">
+        <iframe width="460" height="259" src="http://www.youtube.com/embed/ZLsy564SDVA" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
