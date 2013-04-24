@@ -1,0 +1,2 @@
+class RiadController < ApplicationController
+end

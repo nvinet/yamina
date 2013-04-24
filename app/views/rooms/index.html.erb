@@ -1,21 +1,9 @@
-<h1>Listing rooms</h1>
+<% content_for :banner do %>
+    <section id="hero">
+        <%= image_tag "/images/riad_hero.jpg" %>
+    </section>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @rooms.each do |room| %>
-  <tr>
-    <td><%= link_to 'Show', room %></td>
-    <td><%= link_to 'Edit', edit_room_path(room) %></td>
-    <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+    <h1 class="title">All the comfort of our rooms</h1>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Room', new_room_path %>
+<% @rooms.size %>
+<%= render "room", :locals => { :rooms => @rooms } %>

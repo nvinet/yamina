@@ -1,0 +1,35 @@
+<div class="row">
+    <% @rooms.each do |room| %>
+        <div class="span12 room">
+            <div class="row">
+                <div class="span4">
+                    <a name="<%= room.name %>"></a>
+                    <h5><%= room.name %> Suite</h5>
+                    <p><%= room.description %></p>
+                    <h5>Prices</h5>
+                    <h6>Rate per night per room:</h6>
+                    <dl>
+                        <dt><%= room.name %> - <%= room.roomType %> (sleeps <%= room.guestMin %>/<%= room.guestMax %>)</dt>
+                        <dd><%= number_to_currency(room.priceMin, :unit => "&pound;") %> Mid season</dd>
+                        <dd><%= number_to_currency(room.priceMax, :unit => "&pound;") %> High season*</dd>
+                    </dl>
+                    <dl>
+                        <dt>*High season dates:</dt>
+                        <dd>15th March 2013 - 30th April 2013</dd>
+                        <dd>22nd December 2013 - 04 January 2014</dd>
+                    </dl>
+
+                    <p class="pull-right"><%= link_to "Check availability", :controller => "home", :action => "index", :class => "btn btn-primary" %></p>
+                </div>
+
+                <div class="span4">
+                    <%= image_tag "/images/rooms/room-" + room.name.downcase + "-1.jpg" %>
+                </div>
+
+                <div class="span4">
+                    <%= image_tag "/images/rooms/room-" + room.name.downcase + "-2.jpg" %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>

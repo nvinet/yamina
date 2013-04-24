@@ -6,7 +6,7 @@ class Room < ActiveRecord::Base
                   :name,
                   :priceMax,
                   :priceMin,
-                  :type
+                  :roomType
 
   validates :name,
             :presence => true,
@@ -30,6 +30,6 @@ class Room < ActiveRecord::Base
   validates :link,
             :presence => false
 
-  validates :type,
+  validates :roomType,
             :presence => true
 end
