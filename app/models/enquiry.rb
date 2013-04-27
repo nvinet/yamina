@@ -1,9 +1,12 @@
 class Enquiry < ActiveRecord::Base
   attr_accessible :message,
-                  :subject
+                  :subject,
+                  :customer
 
   belongs_to :customer
 
-  validates :subject, :presence => true
-  validates :message, :presence => true
+  accepts_nested_attributes_for :customer
+
+  validates :subject, :message, :presence => true
+  validates_associated :customer
 end

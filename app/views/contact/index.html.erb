@@ -7,10 +7,71 @@
 <% end %>
 <div class="row">
     <div class="span8">
-        <div class="alert alert-success">
-            Full contact and booking forms coming soon!
-        </div>
-        <p>For any enquiry please eamil us: <a href="mailto:info@riadyamina.com">info@riadyamina.com</a></p>
+        <% if flash[:success] %>
+            <div class="alert alert-success">
+                Thank your enquiry. We will get back to you as soon as possible
+            </div>
+        <% end %>
+        <% if @enquiry.errors.size > 0 || @enquiry.customer.errors.size > 0 %>
+            <div class="alert alert-error">
+                Something went wrong. Please review the fields below
+            </div>
+        <% end %>
+        <%= form_for @enquiry, :url => { :action => "submit" } do |e| %>
+            <%= fields_for @enquiry.customer do |c| %>
+            <fieldset>
+                <legend>Contact Information</legend>
+                <div class="row">
+                    <div class="span4 control-group <%= field_class(@enquiry.customer, :firstName) %>">
+                        <%= label_tag(:firstName, "First Name: " + mark_required(@enquiry.customer, :firstName)) %>
+                        <%= c.text_field :firstName %>
+                        <% if @enquiry.customer.errors[:firstName] %>
+                            <span class="help-inline"><%= @enquiry.customer.errors[:firstName][0] %></span>
+                        <% end %>
+                    </div>
+                    <div class="span4 control-group <%= field_class(@enquiry.customer, :lastName) %>">
+                        <%= label_tag(:lastName, "Last Name: " + mark_required(@enquiry.customer, :lastName)) %>
+                        <%= c.text_field :lastName %>
+                        <% if @enquiry.customer.errors[:lastName] %>
+                            <span class="help-inline"><%= @enquiry.customer.errors[:lastName][0] %></span>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span4 control-group <%= field_class(@enquiry.customer, :email) %>">
+                        <%= label_tag(:email, "Email Address: " + mark_required(@enquiry.customer, :email)) %>
+                        <%= c.text_field :email %>
+                        <% if @enquiry.customer.errors[:email] %>
+                            <span class="help-inline"><%= @enquiry.customer.errors[:email][0] %></span>
+                        <% end %>
+                     </div>
+                    <div class="span4 control-group <%= field_class(@enquiry.customer, :phoneNumber) %>">
+                        <%= label_tag(:phoneNumber, "Phone number: " + mark_required(@enquiry.customer, :phoneNumber)) %>
+                        <%= c.text_field :phoneNumber %>
+                        <% if @enquiry.customer.errors[:phoneNumber] %>
+                            <span class="help-inline"><%= @enquiry.customer.errors[:phoneNumber][0] %></span>
+                        <% end %>
+                    </div>
+                </div>
+            </fieldset>
+            <% end %>
+            <fieldset>
+                <div class="row">
+                    <div class="span8 control-group <%= field_class(@enquiry, :message) %>">
+                        <%= label_tag(:message, "Message: " + mark_required(@enquiry, :message)) %>
+                        <% if @enquiry.errors[:message] %>
+                            <span class="help-inline"><%= @enquiry.errors[:message][0] %></span>
+                        <% end %>
+                        <%= e.text_area(:message, :size => "10x10") %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span4 offset4">
+                        <%= submit_tag("Submit", :class => "btn btn-primary pull-right") %>
+                    </div>
+                </div>
+            </fieldset>
+        <% end %>
     </div>
     <div class="span4">
         <iframe width="300" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.uk/maps/ms?msa=0&amp;msid=210351549676460519806.0004d5da78e1d4d838b13&amp;ie=UTF8&amp;t=m&amp;ll=31.626417,-7.984271&amp;spn=0.010963,0.012832&amp;z=15&amp;output=embed"></iframe><br /><small>View <a href="https://maps.google.co.uk/maps/ms?msa=0&amp;msid=210351549676460519806.0004d5da78e1d4d838b13&amp;ie=UTF8&amp;t=m&amp;ll=31.626417,-7.984271&amp;spn=0.010963,0.012832&amp;z=15&amp;source=embed" style="color:#0000FF;text-align:left">Riad Yamina</a> in a larger map</small>

@@ -24,6 +24,7 @@ class Customer < ActiveRecord::Base
             :format => {:with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, :message => "Invalid email address"}
 
   validates :phoneNumber,
+            :allow_blank => true,
             :presence => false,
             :length => { :in => 2..50 },
             :format => {:with => /[a-zA-Z()\-+\d ]+/, :message => "Invalid phone number"}
