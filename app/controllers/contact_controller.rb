@@ -9,8 +9,7 @@ class ContactController < ApplicationController
 
   def submit
     @enquiry = Enquiry.new(params[:enquiry])
-    @enquiry.subject = 'test'
-    @enquiry.customer = Customer.new(params[:customer])
+    @enquiry.customer = Customer.find_by_email(params[:customer][:email]) || Customer.new(params[:customer])
     if @enquiry.valid?
       @enquiry.save
       ContactMailer.enquire(@enquiry).deliver
