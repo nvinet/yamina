@@ -13,6 +13,7 @@ class ContactController < ApplicationController
     @enquiry.customer = Customer.new(params[:customer])
     if @enquiry.valid?
       @enquiry.save
+      ContactMailer.enquire(@enquiry).deliver
       flash[:success] = true
       redirect_to :action => 'index'
     else

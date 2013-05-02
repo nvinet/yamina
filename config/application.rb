@@ -58,5 +58,7 @@ module RiadRails
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    YAML.load_file("#{Rails.root}/config/config.yml").each { |k,v| config.send "#{k}=", v }
   end
 end
