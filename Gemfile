@@ -38,3 +38,7 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'paypal'
+group :development, :test do
+  gem 'better_errors'
+end
+

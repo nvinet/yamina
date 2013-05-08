@@ -1,22 +1,25 @@
 class ContactController < ApplicationController
   def index
-    if flash[:enquiry]
-      @enquiry = flash[:enquiry]
+    if flash[:contact]
+      @contact = flash[:contact]
     else
-      @enquiry = Enquiry.new(:customer => Customer.new)
+      @contact = Contact.new
     end
+    @rooms = Room.all
   end
 
   def submit
-    @enquiry = Enquiry.new(params[:enquiry])
-    @enquiry.customer = Customer.find_by_email(params[:customer][:email]) || Customer.new(params[:customer])
-    if @enquiry.valid?
-      @enquiry.save
-      ContactMailer.enquire(@enquiry).deliver
+    @contact = Contact.new(params[:contact])
+    @contact.arrival = Date.civil(params[:arrival][:year].to_i, params[:arrival][:month].to_i, params[:arrival][:day].to_i)
+    @contact.departure = Date.civil(params[:departure][:year].to_i, params[:departure][:month].to_i, params[:departure][:day].to_i)
+    if @contact.valid?
+      @customer = Customer.find_by_email(@contact.email) || Customer.new(params[:contact])
+      @customer.save
+      ContactMailer.enquire(@contact).deliver
       flash[:success] = true
       redirect_to :action => 'index'
     else
-      flash[:enquiry] = @enquiry
+      flash[:contact] = @contact
       redirect_to :action => 'index'
     end
   end

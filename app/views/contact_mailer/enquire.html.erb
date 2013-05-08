@@ -1,13 +1,58 @@
 <!DOCTYPE html>
-<html>
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 </head>
+
 <body>
-<h3>Enquiry from <%= @enquiry.customer.firstName %> <%= @enquiry.customer.lastName %> (<%= @enquiry.customer.email %>)</h3>
-<p>
-    <%= @enquiry.message %>
-</p>
+
+<h4>Personal Information</h4>
+<dl class="dl-horizontal">
+    <dt>First Name:</dt>
+    <dd><%= @contact.firstName %></dd>
+</dl>
+<dl class="dl-horizontal">
+    <dt>Last Name:</dt>
+    <dd><%= @contact.lastName %></dd>
+</dl>
+<dl class="dl-horizontal">
+    <dt>Email Address:</dt>
+    <dd><%= @contact.email %></dd>
+</dl>
+<% if @contact.phoneNumber %>
+    <dl class="dl-horizontal">
+        <dt>Phone number:</dt>
+        <dd><%= @contact.phoneNumber %></dd>
+    </dl>
+<% end %>
+<h4>Message</h4>
+<p><%= @contact.message %></p>
+
+<h4>Booking information</h4>
+<dl class="dl-horizontal">
+    <dt>Arrival date:</dt>
+    <dd><%= @contact.arrival %></dd>
+</dl>
+<dl class="dl-horizontal">
+    <dt>Departure date:</dt>
+    <dd><%= @contact.departure %></dd>
+</dl>
+<h4>Guests</h4>
+<% @rooms.each do |room| %>
+    <% if @contact.instance_variable_get("@room#{room.name}Guests") != '' %>
+        <dl class="dl-horizontal">
+            <dt><%= room.name %> room</dt>
+            <dd>Guests: <%= @contact.instance_variable_get("@room#{room.name}Guests") %></dd>
+        </dl>
+    <% end %>
+<% end %>
+<% if @contact.roomRiadGuests != '' %>
+    <dl class="dl-horizontal">
+        <dt>Entire Riad</dt>
+        <dd>Guests: <%= @contact.roomRiadGuests %></dd>
+    </dl>
+<% end %>
+
+
 
 </body>
 </html>
