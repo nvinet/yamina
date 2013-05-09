@@ -4,7 +4,6 @@ class Customer < ActiveRecord::Base
                   :lastName,
                   :phoneNumber
 
-  has_many :enquiries
   has_many :bookings
 
   validates :firstName,
