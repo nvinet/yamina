@@ -37,8 +37,6 @@ gem 'turbolinks'
 # To use debugger
 # gem 'debugger'
 
-gem 'paypal'
-
 group :development, :test do
   gem 'better_errors'
 end
