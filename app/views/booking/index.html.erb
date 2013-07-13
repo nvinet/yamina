@@ -1,0 +1,150 @@
+<% content_for :banner do %>
+    <section id="hero">
+        <%= image_tag "/images/riad_hero.jpg" %>
+    </section>
+
+    <h1 class="title">Book now!</h1>
+<% end %>
+<div class="row">
+    <div class="span8">
+        <% if flash[:success] %>
+            <div class="alert alert-success">
+                Thank your enquiry. We will get back to you as soon as possible
+            </div>
+        <% end %>
+        <% if @booking.errors.size > 0 %>
+            <div class="alert alert-error">
+                Something went wrong. Please review the fields below
+            </div>
+        <% end %>
+        <%= form_for @booking, :url => {:action => "confirm"} do |b| %>
+            <fieldset>
+                <legend>Contact Information</legend>
+                <div class="row">
+                    <div class="span4 control-group <%= field_class(@booking, :firstName) %>">
+                        <%= label_tag(:firstName, "First Name:#{mark_required(@booking, :firstName)}") %>
+                        <%= b.text_field :firstName %>
+                        <% if @booking.errors[:firstName] %>
+                            <span class="help-inline"><%= @booking.errors[:firstName][0] %></span>
+                        <% end %>
+                    </div>
+                    <div class="span4 control-group <%= field_class(@booking, :lastName) %>">
+                        <%= label_tag(:lastName, "Last Name:#{mark_required(@booking, :lastName)}") %>
+                        <%= b.text_field :lastName %>
+                        <% if @booking.errors[:lastName] %>
+                            <span class="help-inline"><%= @booking.errors[:lastName][0] %></span>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span4 control-group <%= field_class(@booking, :email) %>">
+                        <%= label_tag(:email, "Email Address:#{mark_required(@booking, :email)}") %>
+                        <%= b.text_field :email %>
+                        <% if @booking.errors[:email] %>
+                            <span class="help-inline"><%= @booking.errors[:email][0] %></span>
+                        <% end %>
+                    </div>
+                    <div class="span4 control-group <%= field_class(@booking, :phoneNumber) %>">
+                        <%= label_tag(:phoneNumber, "Phone number:#{mark_required(@booking, :phoneNumber)}") %>
+                        <%= b.text_field :phoneNumber %>
+                        <% if @booking.errors[:phoneNumber] %>
+                            <span class="help-inline"><%= @booking.errors[:phoneNumber][0] %></span>
+                        <% end %>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Availability Check</legend>
+                <div class="row">
+                    <div class="span4 control-group">
+                        <label for="arrival">Arrival date: (Mandatory)</label>
+                        <% arrival_date = @booking.arrival %>
+                        <%= select_date(arrival_date, :prefix => :arrival, :order => [:day, :month, :year]) %>
+                    </div>
+                    <div class="span4 control-group">
+                        <label for="departure">Departure date: (Mandatory)</label>
+                        <% departure_date = @booking.departure %>
+                        <%= select_date(departure_date, :prefix => :departure, :order => [:day, :month, :year]) %>
+                    </div>
+                </div>
+                <% @rooms.each_with_index do |room, i| %>
+                    <div class="row">
+                        <div class="span8 control-group<%= i%2 == 0 ? ' striped' : '' %>">
+                            <div class="roomSelect span4">
+                                <label><%= room.name %> Room</label>
+                            </div>
+                            <div class="roomGuests">
+                                <% tag_name = "room#{room.name}Guests" %>
+                                <label for="<%= tag_name %>">Number of guests*:</label>
+                                <%= b.select(:"#{tag_name}", options_for_select((1..room.guestMax).map { |i| [i, i] }), :prompt => "Select") %>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+                <div class="row">
+                    <div class="span8 control-group">
+                        <div class="roomSelect span4">
+                            <label>Book the whole Riad*</label>
+                        </div>
+
+                        <div class="roomGuests">
+                            <label for="roomRiadGuests">Number of guests*:</label>
+                            <%= b.select(:roomRiadGuests, options_for_select(1..22), :prompt => "Select") %>
+                        </div>
+
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Airport pickup</legend>
+                <div class="row">
+                    <div class="span8">
+                        <label class="checkbox" for="airportPickup"><%= b.check_box(:airportPickup) %>Airport
+                            pickup?</label>
+
+                        <div class="control-group">
+                            <%= label_tag :flightNumber, 'Flight number:' %>
+                            <%= b.text_field :flightNumber, :class => 'input-large' %>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="row">
+                    <div class="span4 offset4">
+                        <%= submit_tag("Submit", :class => "btn btn-primary pull-right") %>
+                    </div>
+                </div>
+            </fieldset>
+        <% end %>
+    </div>
+    <div class="span4">
+        <iframe width="300" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.uk/maps/ms?msa=0&amp;msid=210351549676460519806.0004d5da78e1d4d838b13&amp;ie=UTF8&amp;t=m&amp;ll=31.626417,-7.984271&amp;spn=0.010963,0.012832&amp;z=15&amp;output=embed"></iframe>
+        <br/>
+        <small>View
+            <a href="https://maps.google.co.uk/maps/ms?msa=0&amp;msid=210351549676460519806.0004d5da78e1d4d838b13&amp;ie=UTF8&amp;t=m&amp;ll=31.626417,-7.984271&amp;spn=0.010963,0.012832&amp;z=15&amp;source=embed" style="color:#0000FF;text-align:left">Riad
+                Yamina</a> in a larger map
+        </small>
+        <div>
+            <%= image_tag "/images/logo.png" %>
+            <address>
+                52. Derb Jamaa,<br/>
+                Dabachi Medina, Marrakech<br/>
+                <abbr title="Telephone">Tel</abbr> Morocco 00 212 655686035<br/>
+                Mobile Uk 07539522083 or 07956298495<br/>
+                <a href="mailto:info@riadyamina.com">info@riadyamina.com</a>
+            </address>
+        </div>
+        <div>
+            <h6>To get to the Riad Yamina</h6>
+
+            <p>From the main square of Jemaa el Fena it is approximately a 5minute walk. When you arrive at the square
+                ask around for directions to Café de France, which is located opposite the distinctive Kharbouche
+                mosque. Keeping the Café on your right, exit the square and you will emerge onto the road called Derb
+                Dabachi a busy road flanked with shops and cafes. Count three right turnings and take the third which
+                will then put you on Derb Jamaá, a narrow road with high buildings to either side. Continue down the
+                road and follow it through to your left then straight ahead in less than a minute you will see a large
+                wooden door that is facing you. (52 Riad Yamina).</p>
+        </div>
+    </div>
+</div>

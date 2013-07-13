@@ -2,13 +2,12 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.0'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 group :development, :test do
   gem 'sqlite3'
 end
-gem 'pg'
+group :production do
+  gem 'pg'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -18,7 +17,11 @@ gem 'pg'
 
 # gem 'uglifier', '>= 1.0.3'
 
+# Use jquery as the JavaScript library
 gem 'jquery-rails'
+
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'turbolinks'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -36,7 +39,11 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'paypal'
+
 group :development, :test do
   gem 'better_errors'
 end
+
+gem 'protected_attributes'
+gem 'activerecord-session_store'
 

@@ -3,7 +3,7 @@ class ContactMailer < ActionMailer::Base
     @contact = contact
     @rooms = Room.all
     mail(
-        :to => Rails.application.config.email_to,
+        :to => APP_CONFIG['email_to'],
         :from => contact.email,
         :subject => "Riad Enquiry"
     )
