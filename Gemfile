@@ -1,13 +1,12 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
 
 gem 'rails', '4.0.0'
 
 group :development, :test do
   gem 'sqlite3'
 end
-group :production do
-  gem 'pg'
-end
+  gem 'pg', group: :production
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -46,4 +45,6 @@ end
 
 gem 'protected_attributes'
 gem 'activerecord-session_store'
+
+gem 'rails_12factor', group: :production
 
