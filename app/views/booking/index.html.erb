@@ -19,7 +19,7 @@
         <% end %>
         <%= form_for @booking, :url => {:action => "confirm"} do |b| %>
             <fieldset>
-                <legend>Contact Information</legend>
+                <legend>Personal Information</legend>
                 <div class="row">
                     <div class="span4 control-group <%= field_class(@booking, :firstName) %>">
                         <%= label_tag(:firstName, "First Name:#{mark_required(@booking, :firstName)}") %>
@@ -54,7 +54,7 @@
                 </div>
             </fieldset>
             <fieldset>
-                <legend>Availability Check</legend>
+                <legend>Booking information</legend>
                 <div class="row">
                     <div class="span4 control-group">
                         <label for="arrival">Arrival date: (Mandatory)</label>

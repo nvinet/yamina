@@ -30,6 +30,8 @@ class BookingController < ApplicationController
       if @booking
         @booking.status = 'SUCCESS'
         @booking.save()
+        @pricing = calculate_price(@booking)
+        ContactMailer.confirm(@booking, @pricing).deliver
       end
     end
     session.delete('booking')
@@ -44,6 +46,8 @@ class BookingController < ApplicationController
       if @booking
         @booking.status = 'COMPLETED'
         @booking.save()
+        @pricing = calculate_price(@booking)
+        ContactMailer.ref(@booking, @pricing).deliver
       end
     end
     session.delete('booking')

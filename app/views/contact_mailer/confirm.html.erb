@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+
+<body>
+
+<h4>Personal Information</h4>
+<dl class="dl-horizontal">
+    <dt>First Name:</dt>
+    <dd><%= @booking.firstName %></dd>
+</dl>
+<dl class="dl-horizontal">
+    <dt>Last Name:</dt>
+    <dd><%= @booking.lastName %></dd>
+</dl>
+<dl class="dl-horizontal">
+    <dt>Email Address:</dt>
+    <dd><%= @booking.email %></dd>
+</dl>
+<% if @booking.phoneNumber %>
+    <dl class="dl-horizontal">
+        <dt>Phone number:</dt>
+        <dd><%= @booking.phoneNumber %></dd>
+    </dl>
+<% end %>
+
+<h4>Booking information</h4>
+<dl class="dl-horizontal">
+    <dt>Arrival date:</dt>
+    <dd><%= @booking.arrival.strftime('%d/%m/%Y') %></dd>
+</dl>
+<dl class="dl-horizontal">
+    <dt>Departure date:</dt>
+    <dd><%= @booking.departure.strftime('%d/%m/%Y') %></dd>
+</dl>
+<% if @booking.airportPickup %>
+    <dl class="dl-horizontal">
+        <dt>Airport pickup:</dt>
+        <dd>Yes</dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>Flight Number</dt>
+        <dd><%= @booking.flightNumber %></dd>
+    </dl>
+<% else %>
+    <dl class="dl-horizontal">
+        <dt>Airport pickup:</dt>
+        <dd>No</dd>
+    </dl>
+<% end %>
+
+
+<h4>Room and Price breakdown</h4>
+<% if @booking.roomRiadGuests %>
+    <dl class="dl-horizontal">
+        <dt>Tge Riad</dt>
+        <dd>Guests: <%= @booking.roomRiadGuests %></dd>
+        <dd>Price per night: <%= number_to_currency(420, :unit => "&pound;") %></dd>
+        <dd>Room Extra: <%= number_to_currency(@pricing[:breakdown]["riad"], :unit => "&pound;") %>*
+        </dd>
+    </dl>
+<% else %>
+    <% @rooms.each do |room| %>
+        <% if @booking[:"room#{room.name}Guests"] %>
+            <dl class="dl-horizontal">
+                <dt><%= room.name %> room</dt>
+                <dd>Guests: <%= @booking[:"room#{room.name}Guests"] %></dd>
+                <dd>Price per night: <%= number_to_currency(room.priceMax, :unit => "&pound;") %></dd>
+                <dd>Room
+                    Extra: <%= number_to_currency(@pricing[:breakdown]["#{room.name}"], :unit => "&pound;") %>
+                    *
+                </dd>
+            </dl>
+        <% end %>
+    <% end %>
+<% end %>
+
+</body>
+</html>
