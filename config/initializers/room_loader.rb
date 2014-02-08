@@ -1,0 +1,1 @@
+ROOMS = YAML.load_file("#{Rails.root}/config/rooms.yml")

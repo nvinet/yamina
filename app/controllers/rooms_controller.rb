@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
   def index
-    @rooms = Room.all.sort_by {|room| room.priceMin}
+    @rooms = ROOMS["rooms"].sort_by {|room| room["priceMin"]}
   end
 end
