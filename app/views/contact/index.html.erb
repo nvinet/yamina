@@ -71,12 +71,12 @@
                     <div class="row">
                         <div class="span8 control-group<%= i%2 == 0 ? ' striped' : '' %>">
                             <div class="roomSelect span4">
-                                <label><%= room.name %> Room</label>
+                                <label><%= room["name"] %> Room</label>
                             </div>
                             <div class="roomGuests">
-                                <% tag_name = "room#{room.name}Guests" %>
+                                <% tag_name = "room#{room["name"]}Guests" %>
                                 <label for="<%= tag_name %>">Number of guests*:</label>
-                                <%= c.select(:"#{tag_name}", options_for_select((1..room.guestMax).map { |i| [i, i] }), :prompt => "Select") %>
+                                <%= c.select(:"#{tag_name}", options_for_select((1..room["guestMax"]).map { |i| [i, i] }), :prompt => "Select") %>
                             </div>
                         </div>
                     </div>

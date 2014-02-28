@@ -1,7 +1,7 @@
 class ContactController < ApplicationController
   def index
     @contact = flash[:contact] ? flash[:contact] : Contact.new
-    @rooms = Room.all.sort_by {|room| room.priceMin}
+    @rooms = ROOMS["rooms"].sort_by {|room| room["priceMin"]}
   end
 
   def submit

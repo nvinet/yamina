@@ -38,10 +38,10 @@
 </dl>
 <h4>Guests</h4>
 <% @rooms.each do |room| %>
-    <% if @contact.instance_variable_get("@room#{room.name}Guests") != '' %>
+    <% if @contact.instance_variable_get("@room#{room["name"]}Guests") != '' %>
         <dl class="dl-horizontal">
-            <dt><%= room.name %> room</dt>
-            <dd>Guests: <%= @contact.instance_variable_get("@room#{room.name}Guests") %></dd>
+            <dt><%= room["name"] %> room</dt>
+            <dd>Guests: <%= @contact.instance_variable_get("@room#{room["name"]}Guests") %></dd>
         </dl>
     <% end %>
 <% end %>

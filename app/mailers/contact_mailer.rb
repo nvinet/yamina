@@ -1,7 +1,7 @@
 class ContactMailer < ActionMailer::Base
   def enquire(contact)
     @contact = contact
-    @rooms = Room.all
+    @rooms = ROOMS["rooms"]
     mail(
         :to => APP_CONFIG['email_to'],
         :from => contact.email,
@@ -12,7 +12,7 @@ class ContactMailer < ActionMailer::Base
   def confirm(booking, pricing)
     @booking = booking
     @pricing = pricing
-    @rooms = Room.all
+    @rooms = ROOMS["rooms"]
     mail(
         :to => booking.email,
         :from => APP_CONFIG['booking_email_to'],
@@ -23,7 +23,7 @@ class ContactMailer < ActionMailer::Base
   def ref(booking, pricing)
     @booking = booking
     @pricing = pricing
-    @rooms = Room.all
+    @rooms = ROOMS["rooms"]
     mail(
         :to => APP_CONFIG['booking_email_to'],
         :from => booking.email,
