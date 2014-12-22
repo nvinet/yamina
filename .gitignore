@@ -1,6 +1,8 @@
+'use strict';
 /.idea
 *.iml
 *.sqlite3
 *.sql
 /log
+/tmp
 schema.rb
