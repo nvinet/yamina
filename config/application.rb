@@ -26,5 +26,8 @@ module RiadRails
     # config.i18n.default_locale = :de
 
     YAML.load_file("#{Rails.root}/config/config.yml").each { |k,v| config.send "#{k}=", v }
+
+    config.action_mailer.delivery_method   = :postmark
+    config.action_mailer.postmark_settings = { :api_token => ENV['POSTMARK_API_TOKEN'] }
   end
 end

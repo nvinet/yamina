@@ -41,3 +41,4 @@ gem 'protected_attributes'
 
 gem 'rails_12factor', group: :production
 
+gem 'postmark-rails'
