@@ -1,2 +1,0 @@
-class RiadController < ApplicationController
-end

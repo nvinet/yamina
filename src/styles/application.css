@@ -1,0 +1,133 @@
+body {
+    margin-top: 10px;
+}
+
+.navbar-fixed-top, .navbar-fixed-bottom {
+    position: relative;
+}
+
+.navbar-inverse .navbar-inner {
+    background-color: #414042;
+}
+
+.nav > li > a {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+    color: #578382;
+}
+
+p {
+    font-size: 12px;
+    margin: 0 0 5px;
+    line-height: 16px;
+}
+
+form input, form textarea {
+    width: 90%;
+}
+form textarea {
+    width: 95%;
+}
+
+select {
+    float: left;
+    width: auto;
+}
+
+footer {
+    border-top: 1px solid #414042;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.main_container {
+    margin-top: 20px;
+}
+
+dl {
+    list-style: none;
+    margin: 0 0 10px 0;
+}
+dl dd, dl dt {
+    font-size: 12px;
+    line-height: 16px;
+}
+
+h1.title {
+    background: #578382;
+    color: White;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 0 0 20px 0;
+    padding-left: 10px;
+    line-height: 30px;
+}
+
+.room {
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+.room h5 {
+    text-transform: uppercase;
+    margin: 0;
+}
+.room h6 {
+    margin: 0;
+}
+
+.room .last {
+    border-bottom: none;
+}
+
+.column2 {
+    -moz-column-count: 2; /* Firefox */
+    -webkit-column-count: 2; /* Safari and Chrome */
+    column-count: 2;
+    -moz-column-gap: 20px; /* Firefox */
+    -webkit-column-gap: 20px; /* Safari and Chrome */
+    column-gap: 20px;
+}
+
+.roomSelect {
+    float:left;
+}
+.roomSelect label{
+    text-transform: uppercase;
+}
+
+.roomGuests {
+    float:left;}
+
+.roomGuests label{
+    float:left;
+    text-transform: uppercase;
+}
+.roomGuests select{
+    float:left;
+    margin-left:5px;
+    margin-top:-5px;
+}
+.roomGuests span.help-inline{
+    display:block;
+}
+
+.striped{
+    background: #e7eded;
+    padding-top:15px;
+    margin-bottom:20px;
+}
+
+.price_total p {
+        font-size:13px;
+}
+.price_total p span {
+    font-weight:bold;
+    font-size:16px;
+    line-height:24px;
+}

@@ -1,0 +1,46 @@
+<section id="hero">
+    <img src="{{getVersionedPath "/images/riad_hero.jpg"}}" />
+</section>
+
+<h1 class="title">All the comfort of our rooms</h1>
+
+<div class="main_container">
+    <div class="row">
+        {{#each rooms}}
+        <div class="span12 room">
+            <div class="row">
+                <div class="span4">
+                    <a name="{{this.name}}"></a>
+                    <h5>{{this.name}} Suite</h5>
+                    <p>{{this.description}}</p>
+                    <h5>Prices</h5>
+                    <h6>Rate per night per room:</h6>
+                    <dl>
+                        <dt>{{this.name}} - {{this.roomType}} (sleeps {{this.guestMin}}/{{this.guestMax}})</dt>
+                        <dd>£{{this.priceMin}} / {{this.priceMinEuro}}€ Mid season</dd>
+                        <dd>£{{this.priceMax}} / {{this.priceMaxEuro}}€  High season*</dd>
+                    </dl>
+                    <dl>
+                        <dt>*High season dates:</dt>
+                        <dd>1st February 2016 – 29th February 2016</dd>
+                        <dd>10th March 2016 – 30th April 2016</dd>
+                        <dd>20th May 2016 - 31st May 2016</dd>
+                        <dd>1st October 2016 – 31st  October 2016</dd>
+                        <dd>10th  December 2016 – 06th January 2017</dd>
+                    </dl>
+
+                    <p class="pull-right"><a href="/contact" class="btn btn-primary">Check availability</a></p>
+                </div>
+
+                <div class="span4">
+                    <img src="/images/rooms/room-{{toLowerCase this.name}}-1.jpg" />
+                </div>
+
+                <div class="span4">
+                    <img src="/images/rooms/room-{{toLowerCase this.name}}-2.jpg" />
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

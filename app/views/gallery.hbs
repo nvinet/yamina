@@ -1,0 +1,76 @@
+<section id="hero">
+    <img src="{{getVersionedPath "/images/gallery_hero.jpg"}}" />
+</section>
+
+<h1 class="title">Have a peek of our lovely Riad</h1>
+
+<div class="main_container">
+    <div id="main_area">
+        <!-- Slider -->
+        <div class="row">
+            <div class="span12" id="slider">
+                <!-- Top part of the slider -->
+                <div class="row">
+                    <div class="span12" id="carousel-bounding-box">
+                        <div id="myCarousel" class="carousel slide">
+                            <!-- Carousel items -->
+                            <div class="carousel-inner">
+                                {{#foreach gallery}}
+                                <div class="item{{#if $first}} active{{/if}}" data-slide-number="{{$index}}"><img src="{{this.full}}"></div>
+                                {{/foreach}}
+                            </div>
+                            <!-- Carousel nav -->
+                            <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
+                            <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div> <!--/Slider-->
+
+        <div class="row hidden-phone" id="slider-thumbs">
+            <div class="span12">
+                <!-- Bottom switcher of slider -->
+                <ul class="thumbnails">
+                  {{#foreach gallery}}
+                      <li class="span2">
+                          <a class="thumbnail" id="carousel-selector-{{$index}}">
+                              <img src="{{this.thumb}}">
+                          </a>
+                      </li>
+                  {{/foreach}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    jQuery(document).ready(function($) {
+
+        var $carousel = $('#myCarousel');
+
+        $carousel.carousel({
+            interval: 5000
+        });
+
+        $('#carousel-text').html($('#slide-content-0').html());
+
+        //Handles the carousel thumbnails
+        $('[id^=carousel-selector-]').click( function(){
+            var id_selector = $(this).attr("id");
+            var id = id_selector.replace('carousel-selector-','');
+            var id = parseInt(id);
+            $('#myCarousel').carousel(id);
+        });
+
+
+        // When the carousel slides, auto update the text
+        $carousel.on('slid', function (e) {
+            var id = $('.item.active').data('slide-number');
+            $('#carousel-text').html($('#slide-content-'+id).html());
+        });
+
+
+    });
+</script>

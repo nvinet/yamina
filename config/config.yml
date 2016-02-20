@@ -1,9 +1,0 @@
-development:
-  base_url: http://localhost
-  email_to: 'nvinet@gmail.com'
-  booking_email_to: 'nvinet@gmail.com'
-
-production:
-  base_url: http://www.riadyamina.com
-  email_to: 'info@riadyamina.com'
-  booking_email_to: 'info@riadyamina.com'
